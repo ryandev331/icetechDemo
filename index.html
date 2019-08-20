@@ -32,7 +32,7 @@
                 <th>CELL9</th>
             </thead>
             <tbody>
-                <tr v-for="(row,idx) in incluAllData" @click.capture="selectRow($event)">
+                <tr v-for="(row,idx) in incluAllData" @click="selectRow($event)">
                     <td>
                         <span @click.stop="toggleStar($event)" class="star"></span> {{ row.key }}
                     </td>

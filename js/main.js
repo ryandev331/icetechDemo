@@ -9,8 +9,7 @@ $(document).ready(function() {
                 data2: [],
                 data3: {},
             },
-            start: "",
-            end: "",
+            start: [],
         },
         computed: {
             incluAllData: function() {
@@ -40,9 +39,11 @@ $(document).ready(function() {
             },
             timeSpend: function() {
                 var self = this;
-                if (self.end && self.start) {
-                    return self.end - self.start;
+                if (self.start.length) {
+                    var lastItem = self.start.length - 1
+                    return self.start[lastItem] - self.start[lastItem - 1]
                 }
+
             }
         },
         methods: {
@@ -57,10 +58,9 @@ $(document).ready(function() {
                         if (idx >= 0) {
                             Vue.set(self.jsonDatas, "data" + (idx + 1), data)
                         }
-                        if (idx === (self.urlDatas.length - 1)) {
-                            self.start = new Date().getTime();
-                            console.log(self.start)
-                        }
+                        // if (idx === (self.urlDatas.length - 1)) {
+
+                        // }
                     }
                 })
             },
@@ -83,6 +83,10 @@ $(document).ready(function() {
                 }
             },
         },
+        created() {
+            var self = this;
+
+        },
         beforeMount() {
             var self = this;
             //綁定前取得畫面所需資料(迴圈取得多個檔案位置資料)
@@ -92,7 +96,7 @@ $(document).ready(function() {
         },
         beforeUpdate() {
             var self = this;
-            self.end = new Date().getTime();
+            self.start.push(new Date().getTime());
         },
     })
 });
