@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+    <div id="dataTable">
+        <div>
+            取得資料 至 表格建立完成(含事件綁定) 期間，共耗費
+            <span class="usuage">{{ timeSpend }}</span> ms
+        </div>
+        <table>
+            <thead>
+                <th>KEY</th>
+                <th>CELL1</th>
+                <th>CELL2</th>
+                <th>CELL3</th>
+                <th>CELL4</th>
+                <th>CELL5</th>
+                <th>CELL6</th>
+                <th>CELL7</th>
+                <th>CELL8</th>
+                <th>CELL9</th>
+            </thead>
+            <tbody>
+                <tr v-for="(row,idx) in incluAllData" @click.capture="selectRow($event)">
+                    <td>
+                        <span @click.stop="toggleStar($event)" class="star"></span> {{ row.key }}
+                    </td>
+                    <td v-for="idxx in 9">{{ row['cell' + idxx] }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
